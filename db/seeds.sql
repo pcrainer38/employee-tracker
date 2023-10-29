@@ -1,7 +1,7 @@
-INSERT INTO department (id, name)
-VALUES (1, "Service"),
-       (2, "Sales"),
-       (3, "Finance");
+INSERT INTO department (name)
+VALUES ("Service"),
+       ("Sales"),
+       ("Finance");
 
 INSERT INTO role (id, title, salary, dept_id)
 VALUES (1, "Customer Service", 100000, 1),
@@ -17,5 +17,6 @@ VALUES ("Brandi", "Carlile", 2, 4),
        ("Phil", "Hanseroth", 2, 4),
        ("Tim", "Hanseroth", 1, 5),
        ("Catherine", "Shepard", 1, 5),
-       ("Josh", "Neumann", 3, 6);
+       ("Josh", "Neumann", 3, 6),
+       ("Allison", "Russell", 6, 0);
 

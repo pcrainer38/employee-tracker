@@ -1,6 +1,6 @@
 
 CREATE TABLE department (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(30)
 );
 
@@ -21,5 +21,7 @@ CREATE TABLE employee (
     FOREIGN KEY (role_id)
     REFERENCES role(id)
     ON DELETE SET NULL,
-    manager_id INT
+    manager_id INT,
+    FOREIGN KEY(manager_id)
+    REFERENCES employee(id)
 );
