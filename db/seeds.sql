@@ -3,13 +3,13 @@ VALUES ("Service"),
        ("Sales"),
        ("Finance");
 
-INSERT INTO role (id, title, salary, dept_id)
-VALUES (1, "Customer Service", 100000, 1),
-       (2, "Salesperson", 120000, 2),
-       (3, "Account Manager", 130000, 3),
-       (4, "Sales Manager", 150000, 2),
-       (5, "Service Manager", 150000, 1),
-       (6, "Area Manager", 175000, 3);
+INSERT INTO role (title, salary, dept_id)
+VALUES ("Customer Service", 100000, 1),
+       ("Salesperson", 120000, 2),
+       ("Account Manager", 130000, 3),
+       ("Sales Manager", 150000, 2),
+       ("Service Manager", 150000, 1),
+       ("Area Manager", 175000, 3);
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
