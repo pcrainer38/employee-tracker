@@ -1,5 +1,3 @@
-
-
 const inquirer = require('inquirer');
 const db = require('./config/connections')
 
@@ -47,8 +45,11 @@ inquirer.prompt ([
             case 'Update an employee role':
                 updateAnEmployeeRole();
                 break;
+            case 'Exit':
+                console.log('Thank you for use the Employee Tracker!');
             default:
-                return 'Thank you for use the Employee Tracker!';  
+                console.log('Try your selection again.');
+                menu();
         };
     });
 };
@@ -174,6 +175,7 @@ const viewAllDepartments = () => {
     ]).then((res) => {
         let sql = `INSERT INTO employee(first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`;
      db.query(sql, [res.first_name, res.last_name, res.role_id, res.manager_id], (error, response) => {
+        
          if (error) {
              return console.error(error);
          } else {
@@ -192,7 +194,7 @@ const viewAllDepartments = () => {
              return console.error(error);
          } else {
 
-            console.log(response)
+            // console.log(response)
 
             const employeeArr = response.map(e => {
                 return {
@@ -200,7 +202,7 @@ const viewAllDepartments = () => {
                     value: e.id
                 }
             });
-            console.log(employeeArr)
+            // console.log(employeeArr)
              
             inquirer.prompt([
                 {
