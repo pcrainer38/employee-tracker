@@ -13,10 +13,10 @@ VALUES (1, "Customer Service", 100000, 1),
 
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Brandi", "Carlile", 2, 4),
+VALUES ("Brandi", "Carlile", 4, NULL),
        ("Phil", "Hanseroth", 2, 4),
        ("Tim", "Hanseroth", 1, 5),
-       ("Catherine", "Shepard", 1, 5),
+       ("Catherine", "Shepard", 5, NULL),
        ("Josh", "Neumann", 3, 6),
-       ("Allison", "Russell", 6, 0);
+       ("Allison", "Russell", 6, NULL);
 

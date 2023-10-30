@@ -1,7 +1,8 @@
 const express = require('express');
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const sequelize = require('./config/connections');
+const sequelize = require('./config/connections')
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -10,11 +11,16 @@ const PORT = process.env.PORT || 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}));
 
+app.use((req, res) => {
+    res.status(404).end();
+});
+
+const menu = () => {
 inquirer.prompt ([
         {
             type: 'list',
             message: 'What would you like to do?',
-            name: 'action',
+            name: 'choices',
             choices: [
                 'View all departments',
                 'View all roles',
@@ -26,12 +32,13 @@ inquirer.prompt ([
                 'Exit'
             ]
         }
+    
     ]).then (res => {
-        let answer = res.answer;
-        switch (answer) {
+        let choice = res;
+        switch (choice) {
             case 'View all departments':
-              viewAllDepartments();
-              break;
+                viewAllDepartments();
+                break;              
             case 'View all roles':
                 viewAllRoles();
                 break;
@@ -51,15 +58,27 @@ inquirer.prompt ([
                 updateAnEmployeeRole();
                 break;
             default:
-                return;  
-        }
+                return 'Thank you for use the Employee Tracker!';
+        };
     });
+};
 
-function viewAllDepartments() {
+const viewAllDepartments = () => {
+    let sql = `SELECT * FROM department`;
+     sequelize.query(sql, (error, response) => {
+         if (error) {
+             return console.error(error);
+         } else {
+             console.log('List of departments');
+             console.table(response);
+             menu();
+         };
+     });
+  };
  
-}
 
+ menu();
 
-sequelize.sync().then(() => {
+ sequelize.sync().then(() => {
     app.listen(PORT, () => console.log('Now listening'));
 });
